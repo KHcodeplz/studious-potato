@@ -35,7 +35,7 @@
 				<ul class="list-unstyled components">
 				<!-- <p>Dummy Heading</p> -->
 					<li>
-						<a href="#">공지사항</a>
+						<a href="<%=request.getContextPath()%>/views/board/boradList.jsp">공지사항</a>
 					</li>
 					<li>
 						<a href="#">Q & A</a>
@@ -66,9 +66,9 @@
                                 <span></span>
                             </button>
                         
-                            <button class="logo-Btn-Top navbar-fixed-top">
-                    		<img src="/codeplz/resources/images/text_logo.png"/>
-                    		</button>
+                            <a class="logo-Btn-Top navbar-fixed-top" href="index.jsp">
+                    			<img src="/codeplz/resources/images/text_logo.png"/>
+                    		</a>
                             
                             <!-- <div class="search-wraper">
   								<div class="input-group">

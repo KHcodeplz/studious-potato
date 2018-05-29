@@ -35,6 +35,9 @@ a, a:hover, a:focus {
     box-shadow: none;
     outline: none !important;
     border: none;
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
 }
 
 .line {
@@ -165,6 +168,7 @@ ul.CTAs a {
 .login-btn {
     background: #fff;
     color: #7386D5;
+    border: 0.5px solid #c0c0c0;
 }
 
 a.article, a.article:hover {
@@ -205,11 +209,12 @@ a.article, a.article:hover {
     transition: all 0.3s;
 }
 
-#sidebarCollapse {
+/* 34번째 줄 .navbar-btn으로 이동  */
+/* #sidebarCollapse {
     width: 40px;
     height: 40px;
     background: #f5f5f5;
-}
+} */
 
 #sidebarCollapse span {
     width: 80%;
@@ -243,7 +248,9 @@ a.article, a.article:hover {
     MEDIAQUERIES
 ----------------------------------------------------- */
 @media (max-width: 768px) {
-    #sidebar {
+	
+	/* 밑에 두개 지우면 화면 사이즈 조절 시 사이드바 자동으로 토글되는거 사라짐 버튼은 그대로 */
+	#sidebar {
         margin-left: -250px;
         transform: rotateY(90deg);
     }
@@ -251,6 +258,13 @@ a.article, a.article:hover {
         margin-left: 0;
         transform: none;
     }
+    #sidebarCollapse.active span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.active span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+    
     #sidebarCollapse span:first-of-type,
     #sidebarCollapse span:nth-of-type(2),
     #sidebarCollapse span:last-of-type {
@@ -261,14 +275,8 @@ a.article, a.article:hover {
     #sidebarCollapse.active span {
         margin: 0 auto;
     }
-    #sidebarCollapse.active span:first-of-type {
-        transform: rotate(45deg) translate(2px, 2px);
-    }
     #sidebarCollapse.active span:nth-of-type(2) {
         opacity: 0;
-    }
-    #sidebarCollapse.active span:last-of-type {
-        transform: rotate(-45deg) translate(1px, -1px);
     }
 
 }
