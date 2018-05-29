@@ -77,11 +77,11 @@
 <!-- 페이징 처리할 부분 -->
       <!-- <br><br><br><br><br> -->
       <div class="pagingArea" align="center">
-         <button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=1'">&lt;&lt;</button>
+         <button onclick="location.href='/codeplz/selectList.bo?currentPage=1'">&lt;&lt;</button>
          <%  if(currentPage <= 1) {  %>
-         <button disabled><</button>
+         <button disabled>&lt;</button>
          <%  } else { %>
-         <button onclick="location.href='<%= request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>'">&lt;</button>
+         <button onclick="location.href='/codeplz/selectList.bo?currentPage=<%=currentPage - 1 %>'">&lt;</button>
          <%  } %>
          
          <% for(int p = startPage; p <= endPage; p++) {
@@ -94,36 +94,11 @@
          <% } %>
             
          <%  if(currentPage >= maxPage) {  %>
-         <button disabled>></button>
+         <button disabled>&gt;</button>
          <%  } else { %>
          <button onclick="location.href='/codeplz/selectList.bo?currentPage=<%=currentPage + 1 %>'">&gt;</button>
          <%  } %>
          <button onclick="location.href='/codeplz/selectList.bo?currentPage=<%= maxPage %>'">&gt;&gt;</button>
       </div>
       <br><br>
-      
-      <%-- <div class="searchArea" align="center">
-         <select id="searchCondition" name="searchCondition">
-            <option>---</option>
-            <option value="writer">작성자</option>
-            <option value="title">제목</option>
-            <option value="content">내용</option>
-         </select>
-         <input type="search">
-         <button type="submit">검색하기</button>
-         <% if(m != null){ %>
-            <button onclick="location.href='views/board/boardInsertForm.jsp'">작성하기</button>
-         <% } %>
-         
-      </div> --%>
-   </div>
-
-
-<!-- <div class="line"></div> -->
-
-<!-- <div class="jumbotron index_jumbotron">
-				<h1 class="text-center">CodePlz</h1>
-				<br />
-				<p class="text-center"><a class="btn btn-primary" href="#" role="button">들어가기</a></p>
-			</div> -->
 <%@ include file="../common/footer.jsp"%>

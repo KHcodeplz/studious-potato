@@ -25,10 +25,9 @@ public class Board_Dao {
 
 	   public ArrayList<Board> selectList(Connection con, int currentPage, int limit) {
 		      // Statement stmt = null;
+		   ArrayList<Board> list = null;
 		      PreparedStatement pstmt = null;
-
 		      ResultSet rset = null;
-		      ArrayList<Board> list = null;
 
 		      String query = prop.getProperty("selectList");
 
@@ -76,15 +75,15 @@ public class Board_Dao {
 		      return list;
 		   }
 
-	public int getListCount(Connection result) {
-		Statement stmt = null;
+	public int getListCount(Connection con) {
 		int listCount = 0;
+		Statement stmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("listCount");
 		
 		try {
-			stmt = result.createStatement();
+			stmt = con.createStatement();
 			rset = stmt.executeQuery(sql);
 			
 			if(rset.next()){

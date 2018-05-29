@@ -11,19 +11,19 @@ import java.util.*;
 public class Board_Service {
 	
 	public ArrayList<Board> selectList(int currentPage, int limit){
-		Connection result = getConnection();
+		Connection con = getConnection();
 		
-		ArrayList<Board> list = new Board_Dao().selectList(result, currentPage , limit);
+		ArrayList<Board> list = new Board_Dao().selectList(con, currentPage , limit);
 		
-		close(result);
+		close(con);
 		return list;
 		
 	}
 
 	public int getListCount() {
-		Connection result =getConnection();
-		int listCount = new Board_Dao().getListCount(result);
-		close(result);
+		Connection con =getConnection();
+		int listCount = new Board_Dao().getListCount(con);
+		close(con);
 		return listCount;
 	}
 	

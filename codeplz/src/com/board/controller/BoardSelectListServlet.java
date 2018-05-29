@@ -34,7 +34,7 @@ public class BoardSelectListServlet extends HttpServlet {
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       ArrayList<Board> list = null;
-      Board_Service bService = null;
+      Board_Service bService = new Board_Service();
       
       // -- 페이지 처리 코드 부분 -- //
       
