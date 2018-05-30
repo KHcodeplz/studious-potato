@@ -1,9 +1,12 @@
 package com.board.model.service;
+import static com.common.connect.JDBCTemplate.close;
+import static com.common.connect.JDBCTemplate.getConnection;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
 import com.board.model.dao.Board_Dao;
 import com.board.model.vo.Board;
-import static com.common.connect.JDBCTemplate.*;
-import java.sql.*;
-import java.util.*;
 
 
 

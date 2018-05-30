@@ -11,6 +11,9 @@
 					$(this).toggleClass('active');
 				});
 			}); 
+			function noticeList() {
+				location.href="/codeplz/selectList.bo";
+			}
 		</script>
 		<div class="wrapper">
 			<nav id="sidebar">
@@ -35,7 +38,7 @@
 				<ul class="list-unstyled components">
 				<!-- <p>Dummy Heading</p> -->
 					<li>
-						<a href="<%=request.getContextPath()%>/views/board/boradList.jsp">공지사항</a>
+						<a href="#" onclick="noticeList()">공지사항</a>
 					</li>
 					<li>
 						<a href="#">Q & A</a>

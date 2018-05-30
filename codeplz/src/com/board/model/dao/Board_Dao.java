@@ -44,9 +44,10 @@ public class Board_Dao {
 		         
 		         //조회 시작할 행 번호와 마지막 행 번호 계산 
 		         int startRow = (currentPage - 1) * limit + 1;
-		         int endRow = startRow + limit - 1;
+		         int endRow = startRow + (limit - 1);
 		         
-		         pstmt.setInt(1, startRow); pstmt.setInt(2, endRow);
+		         pstmt.setInt(1, startRow);
+		         pstmt.setInt(2, endRow);
 		         
 		         rset = pstmt.executeQuery();
 		          

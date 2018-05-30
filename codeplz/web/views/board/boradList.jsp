@@ -77,11 +77,11 @@
 <!-- 페이징 처리할 부분 -->
       <!-- <br><br><br><br><br> -->
       <div class="pagingArea" align="center">
-         <button onclick="location.href='/codeplz/selectList.bo?currentPage=1'">&lt;&lt;</button>
+         <button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=1'">&lt;&lt;</button>
          <%  if(currentPage <= 1) {  %>
          <button disabled>&lt;</button>
          <%  } else { %>
-         <button onclick="location.href='/codeplz/selectList.bo?currentPage=<%=currentPage - 1 %>'">&lt;</button>
+         <button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage - 1 %>'">&lt;</button>
          <%  } %>
          
          <% for(int p = startPage; p <= endPage; p++) {
@@ -89,16 +89,16 @@
          %>
             <button disabled><%= p %></button>
          <%      } else { %>
-            <button onclick="location.href='/codeplz/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
+            <button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%= p %>'"><%= p %></button>
          <%      } %>
          <% } %>
             
          <%  if(currentPage >= maxPage) {  %>
          <button disabled>&gt;</button>
          <%  } else { %>
-         <button onclick="location.href='/codeplz/selectList.bo?currentPage=<%=currentPage + 1 %>'">&gt;</button>
+         <button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%=currentPage + 1 %>'">&gt;</button>
          <%  } %>
-         <button onclick="location.href='/codeplz/selectList.bo?currentPage=<%= maxPage %>'">&gt;&gt;</button>
+         <button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%= maxPage %>'">&gt;&gt;</button>
       </div>
       <br><br>
 <%@ include file="../common/footer.jsp"%>
