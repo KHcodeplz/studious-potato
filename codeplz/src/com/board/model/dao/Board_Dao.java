@@ -13,7 +13,7 @@ public class Board_Dao {
 	public Board_Dao(){
 		prop= new Properties();
 		
-		String prop_Path = Board_Dao.class.getResource("/config/board/board-query.properties").getPath();
+		String prop_Path = Board_Dao.class.getResource("/com/config/board/board-query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(prop_Path));
@@ -23,28 +23,25 @@ public class Board_Dao {
 		}
 	}
 
-	   public ArrayList<Board> selectList(Connection con, int currentPage, int limit) {
+	   public ArrayList<Board> selectList(Connection result, int currentPage, int limit) {
 		      // Statement stmt = null;
-		   ArrayList<Board> list = null;
 		      PreparedStatement pstmt = null;
+
 		      ResultSet rset = null;
+		      ArrayList<Board> list = null;
 
-		      String query = prop.getProperty("selectList");
+		      String sql = prop.getProperty("selectList");
 
-		      System.out.println(query);
+		      System.out.println(sql);
 
 		      try {
-		         // 페이징처리 전
-		         // stmt = con.createStatement();
-		         // rset = stmt.executeQuery(query);
-
-		         // 페이징처리 후
+		        
 		         
-		         pstmt = con.prepareStatement(query);
+		         pstmt = result.prepareStatement(sql);
 		         
 		         //조회 시작할 행 번호와 마지막 행 번호 계산 
 		         int startRow = (currentPage - 1) * limit + 1;
-		         int endRow = startRow + (limit - 1);
+		         int endRow = startRow + limit - 1;
 		         
 		         pstmt.setInt(1, startRow);
 		         pstmt.setInt(2, endRow);
@@ -62,29 +59,32 @@ public class Board_Dao {
 		            b.setCol_board_writer(rset.getString("COL_USER_NICKNAME"));
 		            b.setCol_board_hits(rset.getInt("COL_BOARD_HITS"));
 		            list.add(b);
-		          
+		            
+		            System.out.println(b);
 		         }
 
 		      } catch (SQLException e) {
 		         e.printStackTrace();
 		      } finally {
 		         close(rset);
-		         //close(stmt);
+		         
 		         close(pstmt);
 		      }
 
 		      return list;
 		   }
 
-	public int getListCount(Connection con) {
-		int listCount = 0;
+	public int getListCount(Connection result) {
 		Statement stmt = null;
+		
+		int listCount = 0;
 		ResultSet rset = null;
+		
 		
 		String sql = prop.getProperty("listCount");
 		
 		try {
-			stmt = con.createStatement();
+			stmt = result.createStatement();
 			rset = stmt.executeQuery(sql);
 			
 			if(rset.next()){
@@ -97,7 +97,7 @@ public class Board_Dao {
 			close(stmt);
 			close(rset);
 		}
-		
+		System.out.println(listCount);
 		return listCount;
 	}
 	

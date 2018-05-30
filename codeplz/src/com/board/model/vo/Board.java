@@ -1,10 +1,18 @@
 package com.board.model.vo;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.*;
 
 public class Board  implements Serializable{
 	private static final long serialVersionUID = 1L;
+	public Board(int col_board_index, String col_board_title, int col_board_hits, String col_board_writer) {
+		super();
+		this.col_board_index = col_board_index;
+		this.col_board_title = col_board_title;
+		this.col_board_hits = col_board_hits;
+		this.col_board_writer = col_board_writer;
+	}
+	
 
 	private int col_board_index;
 	private int col_board_category_index;
@@ -14,14 +22,15 @@ public class Board  implements Serializable{
 	private String col_board_file;
 	private int col_board_hits;
 	private String col_board_writer;
-	
-	/*Date java.util로 import 한 리득규 동무*/
 	private Date col_board_inserted_date;
 	private Date col_board_modified_date;
 	private int col_board_is_deleted;
 	
-	public Board() {}
 	
+	public Board() {
+		super();
+		
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

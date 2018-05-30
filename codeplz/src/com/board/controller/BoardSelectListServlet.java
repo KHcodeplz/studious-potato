@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.board.model.service.Board_Service;
+import com.board.model.dao.service.Board_Service;
 import com.board.model.vo.Board;
 import com.board.model.vo.PageInfo;
 
@@ -19,7 +19,7 @@ import com.board.model.vo.PageInfo;
  */
 @WebServlet("/selectList.bo")
 public class BoardSelectListServlet extends HttpServlet {
-   private static final long serialVersionUID = 2L;
+   private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,6 +36,7 @@ public class BoardSelectListServlet extends HttpServlet {
       ArrayList<Board> list = null;
       Board_Service bService = new Board_Service();
       
+      System.out.println("servlet 확인");
       // -- 페이지 처리 코드 부분 -- //
       
       int startPage; // 한번에 표시될 게시글들의 시작 페이지
@@ -53,9 +54,10 @@ public class BoardSelectListServlet extends HttpServlet {
       // 만약에 전달받는 페이지가 있을 경우
       // 즉, 현재 페이지 정보를 받을 경우
       // currentPage 의 값을 수정한다.
-		if (request.getParameter("currentPage") != null) {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
+      if(request.getParameter("currentPage") != null){
+         currentPage
+          = Integer.parseInt(request.getParameter("currentPage"));
+      }
       
       // 전체 게시글의 수
       int listCount = bService.getListCount();
@@ -96,18 +98,21 @@ public class BoardSelectListServlet extends HttpServlet {
       
       // 페이지 처리를 수행할 경우
       list = bService.selectList(currentPage, limit);
+      System.out.println(list);
       
       String page="";
       if(list != null){
-         page = "views/board/boardList.jsp";
+         page ="views/board/boardList.jsp";
          request.setAttribute("pi", pi);
          request.setAttribute("list", list);
-      } else {
-//         page="views/common/errorPage.jsp";
-//         request.setAttribute("msg", "게시판 조회 실패!!");
-      }
+      } 
+//      else {
+////         page="views/common/errorPage.jsp";
+////         request.setAttribute("msg", "게시판 조회 실패!!");
+//      }
       
-      request.getRequestDispatcher(page).forward(request, response);
+      request.getRequestDispatcher(page)
+      .forward(request, response);
       
    }
 

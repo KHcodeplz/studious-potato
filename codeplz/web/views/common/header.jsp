@@ -11,9 +11,6 @@
 					$(this).toggleClass('active');
 				});
 			}); 
-			function noticeList() {
-				location.href="/codeplz/selectList.bo";
-			}
 		</script>
 		<div class="wrapper">
 			<nav id="sidebar">
@@ -23,7 +20,7 @@
                     		<li><a href="#" class="login-btn">로그인 / 회원가입</a></li>
                 		</ul>
                 	</div>
-					<div class="search-wraper">
+					<form class="search-wraper">
   						<div class="input-group">
     						<input type="text" class="form-control" placeholder="Search">
     						<div class="input-group-btn">
@@ -32,13 +29,13 @@
       							</button>
     						</div>
   						</div>
-        			</div>
+        			</form>
 				</div>
 
 				<ul class="list-unstyled components">
 				<!-- <p>Dummy Heading</p> -->
 					<li>
-						<a href="#" onclick="noticeList()">공지사항</a>
+						<a href="/codeplz/selectList.bo">공지사항</a>
 					</li>
 					<li>
 						<a href="#">Q & A</a>
@@ -69,8 +66,8 @@
                                 <span></span>
                             </button>
                         
-                            <a class="logo-Btn-Top navbar-fixed-top" href="index.jsp">
-                    			<img src="/codeplz/resources/images/text_logo.png"/>
+                            <a  class="logo-Btn-Top navbar-fixed-top" href="/codeplz/index.jsp">
+                    		<img src="/codeplz/resources/images/text_logo.png"/>
                     		</a>
                             
                             <!-- <div class="search-wraper">

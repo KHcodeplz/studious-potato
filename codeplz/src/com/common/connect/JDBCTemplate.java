@@ -1,27 +1,21 @@
 package com.common.connect;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
 
 public class JDBCTemplate {
 	public static Connection getConnection() {
-		Connection con = null;
+		Connection result = null;
 		Properties prop = new Properties();
 		
-		String prop_Path = JDBCTemplate.class.getResource("/config/driver.properties").getPath(); 
+		String prop_Path = JDBCTemplate.class.getResource("/com/config/driver/driver.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(prop_Path));
 			
 //			use in oracle & windows
-//			
+			
 			String driver = prop.getProperty("oracleDriver");
 			String url = prop.getProperty("oracleURL");
 			String dbid = prop.getProperty("oracleID");
@@ -29,7 +23,7 @@ public class JDBCTemplate {
 //			
 			
 //			use in mysql & mac os
-			
+//			
 //			String driver = prop.getProperty("mysqlDriver");
 //			String url = prop.getProperty("mysqlURL");
 //			String dbid = prop.getProperty("mysqlID");
@@ -37,9 +31,9 @@ public class JDBCTemplate {
 			
 			Class.forName(driver);
 			
-			con = DriverManager.getConnection(url, dbid, dbpw);
+			result = DriverManager.getConnection(url, dbid, dbpw);
 			
-			con.setAutoCommit(false);
+			result.setAutoCommit(false);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -51,7 +45,7 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 		
-		return con;
+		return result;
 	}
 	
 	public static void close(Connection con) {
