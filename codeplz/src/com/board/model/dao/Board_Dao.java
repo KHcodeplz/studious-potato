@@ -39,6 +39,8 @@ public class Board_Dao {
 		         
 		         pstmt = result.prepareStatement(sql);
 		         
+		         
+		         
 		         //조회 시작할 행 번호와 마지막 행 번호 계산 
 		         int startRow = (currentPage - 1) * limit + 1;
 		         int endRow = startRow + limit - 1;
@@ -99,6 +101,62 @@ public class Board_Dao {
 		}
 		System.out.println(listCount);
 		return listCount;
+	}
+
+	public Board Detail(Connection result, int index) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String sql = prop.getProperty("Detail");
+		
+		try {
+			pstmt = result.prepareStatement(sql);
+			pstmt.setInt(1, index);
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()){
+				b =  new Board();
+				b.setCol_board_index(rset.getInt("COL_BOARD_INDEX"));
+				b.setCol_board_tags(rset.getString("COL_BOARD_TAGS"));
+				b.setCol_board_title(rset.getString("COL_BOARD_TITLE"));
+				b.setCol_board_content(rset.getString("COL_BOARD_CONTENT"));
+				b.setCol_board_file(rset.getString("COL_BOARD_FILE"));
+				b.setCol_board_writer(rset.getString("COL_USER_NICKNAME"));
+				b.setCol_board_inserted_date(rset.getDate("COL_BOARD_INSERTED_DATE"));
+				b.setCol_board_hits(rset.getInt("COL_BOARD_HITS"));
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
+	}
+
+	public int updateCount(Connection result, int index) {
+		PreparedStatement pstmt = null;
+		int num =0;
+		String sql = prop.getProperty("updateHits");
+		
+		try {
+			pstmt = result.prepareStatement(sql);
+			pstmt.setInt(1, index);
+			
+			num = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return num;
 	}
 	
 
